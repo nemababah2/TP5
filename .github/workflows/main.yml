@@ -27,3 +27,7 @@ jobs:
           nohup python server.py &
           echo "Waiting for Flask server to start..."
           sleep 30
+
+      - name: Run Locust load tests
+        run: |
+          locust -f locustfile.py --host http://127.0.0.1:50001 --users 1000 --spawn-rate 10 --run-time 2m --headless
